@@ -47,15 +47,9 @@ library(scales)
 ```
 
 
-IMDB ratings: Differences between directors
-
+#IMDB ratings: Differences between directors#
 
 Lets load the data
-
-
-```{r directors, echo=TRUE, out.width="100%"}
-knitr::include_graphics(here::here("images", "directors.png"), error = FALSE)
-```
 
 ```{r load-movies-data}
 movies <- read_csv(here::here("data", "movies.csv")) #import the dataset
@@ -112,6 +106,10 @@ ggplot(spielberg_burton_movies, aes(x = mean_rating, y =reorder(director,mean_ra
   theme(plot.title = element_text(face="bold")) #bold the main title
 ```
 
+> The graph shows us that Steven Spielberg has higher IMDB ratings than Tim Burton
+
+
+
 
 Lets run a hypothesis test to see if there is 0 difference between them
 
@@ -156,4 +154,7 @@ null_dist_director %>%
 
 >Null hypothesis: The difference of the mean ratings of Spielberg and Burton is equal to 0.
 Alternative hypothesis: The difference of the mean ratings of Spielberg and Burton is not equal to 0.
-Based on both the t.test and the infer command, there seems to be a statistically significant difference in the mean ratings of Spielberg and Burton based on a 0.014 p-value using the infer command and a 0.01 p-value using the t.test command. Therefore we reject the null hypothesis.
+
+
+>Conclusion: Based on both the t.test and the infer command, there seems to be a statistically significant difference in the mean ratings of Spielberg and Burton based on a 0.014 p-value using the infer command and a 0.01 p-value using the t.test command. Therefore we reject the null hypothesis.
+

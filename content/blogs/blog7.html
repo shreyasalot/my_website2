@@ -14,10 +14,8 @@ title: IMDB Ratings
 
 
 <p>Loading packages</p>
-<p>IMDB ratings: Differences between directors</p>
+<p>#IMDB ratings: Differences between directors#</p>
 <p>Lets load the data</p>
-<pre class="r"><code>knitr::include_graphics(here::here(&quot;images&quot;, &quot;directors.png&quot;), error = FALSE)</code></pre>
-<p><img src="/Users/shreyasalot/Documents/my_website2/images/directors.png" width="100%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>movies &lt;- read_csv(here::here(&quot;data&quot;, &quot;movies.csv&quot;)) #import the dataset
 glimpse(movies) #figure out the variables of movies</code></pre>
 <pre><code>## Rows: 2,961
@@ -82,6 +80,9 @@ ggplot(spielberg_burton_movies, aes(x = mean_rating, y =reorder(director,mean_ra
   
   theme(plot.title = element_text(face=&quot;bold&quot;)) #bold the main title</code></pre>
 <p><img src="/blogs/blog7_files/figure-html/unnamed-chunk-1-1.png" width="648" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>The graph shows us that Steven Spielberg has higher IMDB ratings than Tim Burton</p>
+</blockquote>
 <p>Lets run a hypothesis test to see if there is 0 difference between them</p>
 <pre class="r"><code>director_ratings&lt;-movies%&gt;%
   
@@ -129,9 +130,11 @@ null_dist_director %&gt;% visualize() +
 <pre><code>## # A tibble: 1 x 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1   0.016</code></pre>
+## 1    0.02</code></pre>
 <blockquote>
 <p>Null hypothesis: The difference of the mean ratings of Spielberg and Burton is equal to 0.
-Alternative hypothesis: The difference of the mean ratings of Spielberg and Burton is not equal to 0.
-Based on both the t.test and the infer command, there seems to be a statistically significant difference in the mean ratings of Spielberg and Burton based on a 0.014 p-value using the infer command and a 0.01 p-value using the t.test command. Therefore we reject the null hypothesis.</p>
+Alternative hypothesis: The difference of the mean ratings of Spielberg and Burton is not equal to 0.</p>
+</blockquote>
+<blockquote>
+<p>Conclusion: Based on both the t.test and the infer command, there seems to be a statistically significant difference in the mean ratings of Spielberg and Burton based on a 0.014 p-value using the infer command and a 0.01 p-value using the t.test command. Therefore we reject the null hypothesis.</p>
 </blockquote>
