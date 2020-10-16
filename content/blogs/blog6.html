@@ -1,0 +1,105 @@
+---
+categories:
+- ""
+- ""
+date: "2020/10/15"
+description: ""
+draft: false
+image: pic12.jpg
+keywords: ""
+slug: blog6
+title: Climate change
+---
+
+
+
+<p>We will review <em>Combined Land-Surface Air and Sea-Surface Water Temperature Anomalies</em> in the Northern Hemisphere at <a href="https://data.giss.nasa.gov/gistemp">NASA’s Goddard Institute for Space Studies</a>. The <a href="https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.txt">tabular data of temperature anomalies can be found here</a></p>
+<p>Run the code below to load the file:</p>
+<pre class="r"><code>weather &lt;- 
+  read_csv(&quot;https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.csv&quot;, 
+           skip = 1, 
+           na = &quot;***&quot;)</code></pre>
+<p>For each month and year, the dataframe shows the deviation of temperature from the normal (expected).</p>
+<p>Converting data into long format.</p>
+<pre class="r"><code>tidyweather &lt;- weather %&gt;% 
+  select(Year, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec) %&gt;% 
+  gather(&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;, key = Month, value = delta)</code></pre>
+<p>Plotting the data with a trendline to view weather anomolies</p>
+<pre class="r"><code>tidyweather &lt;- tidyweather %&gt;%
+  mutate(date = ymd(paste(as.character(Year), Month, &quot;1&quot;)),
+         month = month(date, label=TRUE),
+         year = year(date))
+
+ggplot(tidyweather, aes(x=date, y = delta))+
+  geom_point()+
+  geom_smooth(color=&quot;red&quot;) +
+  theme_bw() +
+  labs (
+    title = &quot;Weather Anomalies&quot;
+  )</code></pre>
+<p><img src="/blogs/blog6_files/figure-html/scatter_plot-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>Lets view the data for each month now. This will be easier to read.</p>
+<p><img src="/blogs/blog6_files/figure-html/facet_wrap-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>Lets group the data by time periods and view deviations.</p>
+<pre class="r"><code>comparison &lt;- tidyweather %&gt;% 
+  filter(Year&gt;= 1881) %&gt;%     #remove years prior to 1881
+  #create new variable &#39;interval&#39;, and assign values based on criteria below:
+  mutate(interval = case_when(
+    Year %in% c(1881:1920) ~ &quot;1881-1920&quot;,
+    Year %in% c(1921:1950) ~ &quot;1921-1950&quot;,
+    Year %in% c(1951:1980) ~ &quot;1951-1980&quot;,
+    Year %in% c(1981:2010) ~ &quot;1981-2010&quot;,
+    TRUE ~ &quot;2011-present&quot;
+  ))</code></pre>
+<pre class="r"><code>ggplot(comparison, aes(x=delta, fill=interval))+
+  geom_density(alpha=0.2) +   #density plot with tranparency set to 20%
+  theme_bw() +                #theme
+  labs (
+    title = &quot;Density Plot for Monthly Temperature Anomalies&quot;,
+    y     = &quot;Density&quot;         #changing y-axis label to sentence case
+  )</code></pre>
+<p><img src="/blogs/blog6_files/figure-html/density_plot-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>Lets now look at average yearly anomolies.</p>
+<pre class="r"><code>#creating yearly averages
+average_annual_anomaly &lt;- tidyweather %&gt;% 
+  group_by(Year) %&gt;%   #grouping data by Year
+  
+  # creating summaries for mean delta 
+  # use `na.rm=TRUE` to eliminate NA (not available) values 
+  summarise(annual_average_delta = mean(delta, na.rm=TRUE)) 
+
+#plotting the data:
+ggplot(average_annual_anomaly, aes(x=Year, y= annual_average_delta))+
+  geom_point()+
+  
+  #Fit the best fit line, using LOESS method
+  geom_smooth() +
+  
+  #change to theme_bw() to have white background + black frame around plot
+  theme_bw() +
+  labs (
+    title = &quot;Average Yearly Anomaly&quot;,
+    y     = &quot;Average Annual Delta&quot;
+  )                         </code></pre>
+<p><img src="/blogs/blog6_files/figure-html/averaging-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>NASA has pointed out that a one-degree global change is significant because it takes a vast amount of heat to warm all the oceans, atmosphere, and land by that much. In the past, a one- to two-degree drop was all it took to plunge the Earth into the Little Ice Age.</p>
+<p>A confidence interval for the average annual delta since 2011</p>
+<pre class="r"><code>formula_ci &lt;- comparison %&gt;% 
+  filter(interval == &quot;2011-present&quot;) %&gt;% 
+  group_by(year) %&gt;% 
+  summarise(mean_delta = mean(delta, na.rm = TRUE), sd_delta = sd(delta, na.rm = TRUE), count = n(), t_critical = qt(0.975, count-1), se = sd_delta/sqrt(count), margin_of_error = t_critical * se, ci_low = mean_delta - margin_of_error, ci_high = mean_delta + margin_of_error)
+
+formula_ci</code></pre>
+<pre><code>## # A tibble: 9 x 9
+##    year mean_delta sd_delta count t_critical     se margin_of_error ci_low
+##   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;      &lt;dbl&gt;  &lt;dbl&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2011      0.7      0.103    12       2.20 0.0298          0.0655  0.634
+## 2  2012      0.765    0.160    12       2.20 0.0462          0.102   0.663
+## 3  2013      0.753    0.111    12       2.20 0.0321          0.0706  0.682
+## 4  2014      0.9      0.140    12       2.20 0.0405          0.0891  0.811
+## 5  2015      1.13     0.163    12       2.20 0.0470          0.103   1.03 
+## 6  2016      1.28     0.326    12       2.20 0.0940          0.207   1.07 
+## 7  2017      1.13     0.213    12       2.20 0.0616          0.136   0.990
+## 8  2018      0.989    0.158    12       2.20 0.0455          0.100   0.889
+## 9  2019      1.12     0.163    12       2.20 0.0470          0.104   1.01 
+## # … with 1 more variable: ci_high &lt;dbl&gt;</code></pre>
