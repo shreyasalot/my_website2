@@ -93,21 +93,21 @@ disqusShortname = ""
     
     [[params.tiles.showcase]]
       title = "About me"
-      #subtitle = "Ipsum Dolor Sit Amet"
+      subtitle = "Who am I?"
       image = "pic01.jpg"
       url = "blogs/blog5"
 
     [[params.tiles.showcase]]
       title = "Climate Change"
-      #subtitle = "Feugiat Amet Tempus"
+      subtitle = "Lets look at data from NASA "
       image = "pic02.jpg"
       url = "blogs/blog6"
 
     [[params.tiles.showcase]]
-      title = "Magna"
-      subtitle = "Lorem Etiam Nullam"
+      title = "IMDB Ratings"
+      subtitle = "Lets look at ratings for directors"
       image = "pic03.jpg"
-      url = "blogs/magna"
+      url = "blogs/blog7"
 
     [[params.tiles.showcase]]
       title = "Ipsum"
