@@ -5,14 +5,17 @@ categories:
 date: "2020/10/15"
 description: ""
 draft: false
-image: pic10.jpg
+image: pic11.jpg
 keywords: ""
 slug: blog5
 title: About me
 ---
 
 
-My name is Shreya and I am originally from India. I moved to Boston for college and work. I completed my Bachelors of Science in Business Administration from Northeastern University. After college I worked as a Fund Accounting Analyst at J.P. Morgan for 2 years. I am currently a student at London Business School, pursuing my Masters in Financial Analysis degree. After graduating in 2021, I wish to work as an Investment Banker in London.
+My name is *Shreya* and I am originally from **India**. I moved to **Boston** for college and work. I completed my Bachelors of Science in Business Administration from *Northeastern University*. After college I worked as a Fund Accounting Analyst at J.P. Morgan for 2 years. I am currently a student at *London Business School*, pursuing my *Masters in Financial Analysis* degree. After graduating in 2021, I wish to work as an Investment Banker in London.
+
+
+
 I love traveling and exploring new places. My hobbies also include playing the piano, trying new restaurants and reading!
 
 
