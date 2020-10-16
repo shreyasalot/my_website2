@@ -20,7 +20,7 @@ disqusShortname = ""
 
   # Provide your metadata here.
   name = "Shreya"
-  description = "Your description"
+  description = "This is my portfoilio of projects that I have worked on recently using R. "
 
   # Link custom assets relative to /static
   custom_css = []
@@ -37,8 +37,8 @@ disqusShortname = ""
 
   # Navigation Section
   [params.navigation]
-    title = "Forty"
-    subtitle = "By HTML5 Up"
+    title = "Shreya"
+    subtitle = "MFA 2021"
     menu = "Menu"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
@@ -92,14 +92,14 @@ disqusShortname = ""
     # Display your showcases here.
     
     [[params.tiles.showcase]]
-      title = "Aliquam"
-      subtitle = "Ipsum Dolor Sit Amet"
+      title = "About me"
+      #subtitle = "Ipsum Dolor Sit Amet"
       image = "pic01.jpg"
       url = "blogs/aliquam"
 
     [[params.tiles.showcase]]
-      title = "Tempus"
-      subtitle = "Feugiat Amet Tempus"
+      title = "Climate Change"
+      #subtitle = "Feugiat Amet Tempus"
       image = "pic02.jpg"
       url = "blogs/tempus"
 
@@ -172,7 +172,7 @@ disqusShortname = ""
     # by copying the corresponding map with frontmatter code.
     [[params.contact.email]]
     title = "Email"
-    email = "example@domain.com"
+    email = "salotshreya96@gmail.com"
 
     [[params.contact.phone]]
     title = "Phone"
@@ -180,9 +180,9 @@ disqusShortname = ""
 
     [[params.contact.address]]
     title = "Address"
-    street = "Street"
-    city = "City, ST 00000"
-    country = "Country"
+    street = "Regent's Park"
+    city = "London, NW1 4SA"
+    country = "United Kingdom"
 
   # Footer section
   [params.footer]
