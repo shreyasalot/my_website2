@@ -94,31 +94,31 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "About me"
       subtitle = "Who am I?"
-      image = "pic01.jpg"
+      image = "pic08.jpg"
       url = "blogs/blog5"
 
     [[params.tiles.showcase]]
       title = "Climate Change"
       subtitle = "Lets look at data from NASA "
-      image = "pic02.jpg"
+      image = "pic07.jpg"
       url = "blogs/blog6"
 
     [[params.tiles.showcase]]
       title = "IMDB Ratings"
       subtitle = "Lets look at ratings for directors"
-      image = "pic03.jpg"
+      image = "pic09.jpg"
       url = "blogs/blog7"
 
     [[params.tiles.showcase]]
       title = "U.S. Yield Curve"
       subtitle = "Treasury Rates and Yield Curves"
-      image = "pic04.jpg"
+      image = "pic010.jpg"
       url = "blogs/blog8"
 
     [[params.tiles.showcase]]
       title = "GDP by Country"
       subtitle = "Lets compare some countries"
-      image = "pic15.jpg"
+      image = "pic011.jpg"
       url = "blogs/blog9"
 
     [[params.tiles.showcase]]
