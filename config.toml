@@ -71,7 +71,7 @@ disqusShortname = ""
       name = "Get Started"
       url = "blogs"
 
-    # Button Style 2
+    # Button Style 2 
     [[params.navigation.button2]]
       name = "Log In"
       url = "#"
@@ -192,27 +192,30 @@ disqusShortname = ""
     # Uses font awesome icons
     [[params.footer.social]]
       icon = "fa-twitter"
-      url=  "https://twitter.com/ShreyaSalot
+      url= "https://www.twitter.com"
       label = "Twitter"
 
     [[params.footer.social]]
       icon = "fa-facebook"
-      url= "https://www.facebook.com/salot.shreya/"
+      url= "https://www.facebook.com"
       label = "Facebook"
 
     [[params.footer.social]]
       icon = "fa-instagram"
-      url= "https://www.instagram.com/shreyasalot/"
+      url= "https://www.instagram.com"
       label = "Instagram"
     
     [[params.footer.social]]
       icon = "fa-github"
-      url= "https://github.com/shreyasalot/my_website2"
+      url= "https://www.github.com"
       label = "GitHub"
 
     [[params.footer.social]]
       icon = "fa-linkedin"
-      url= "https://www.linkedin.com/in/shreya-salot-931298109/"
+      url= "https://www.linkedin.com"
       label = "LinkedIn"
 
-    
+    [[params.footer.quicklinks]]
+      text = "Design: "
+      url= "https://www.html5up.net"
+      alt = "HTML5 UP"
