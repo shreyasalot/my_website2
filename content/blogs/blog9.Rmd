@@ -33,6 +33,7 @@ library(scales)
 ```
 
 
+
 > Getting the data
 
 ```{r read_GDP_data}
