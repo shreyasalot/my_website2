@@ -141,7 +141,7 @@ disqusShortname = ""
     title = "This Website"
     subtitle = """This website is my portfolio of some work that I have done in my Data Analytics Class. 
     I took this class from September to October 2020 as a student at London Business School. 
-    I learnt how to install and work with R Mardown files. I also learnt how R is suitable to use when there is a large amount of data.
+    I learnt how to install and work with R Markdown files. I also learnt how R is suitable to use when there is a large amount of data.
     It can be useful in calculations and plotting data easily as well. This is my first programming course and it has been very interesting."""
     buttonText = "Get Started"
     url = "blogs"
@@ -211,7 +211,7 @@ disqusShortname = ""
 
     [[params.footer.social]]
       icon = "fa-linkedin"
-      url= "https://www.linkedin.com"
+      url= "https://www.linkedin.com/in/shreya-salot-931298109/"
       label = "LinkedIn"
 
     [[params.footer.quicklinks]]
