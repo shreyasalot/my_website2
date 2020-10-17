@@ -22,6 +22,52 @@ title: U.S. Yield Curves
 <pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
+##   method                           from   
+##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>## 
+## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
+## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;mosaic&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
+## 
+##     mean</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     count, do, tally</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     cross</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     stat</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+##     quantile, sd, t.test, var</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     max, mean, min, prod, range, sample, sum</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggthemes&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     theme_map</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
+##   method from   
+##   +.gg   ggplot2</code></pre>
+<pre><code>## here() starts at /Users/shreyasalot/Documents/my_website2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;skimr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     n_missing</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
 <pre><code>## Loading required package: lubridate</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
@@ -55,6 +101,33 @@ title: U.S. Yield Curves
 <pre><code>## ══ Need to Learn tidyquant? ═════════════════════════════════════════════════════════════════════════════════
 ## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
 ## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
+<pre><code>## 
+## Attaching package: &#39;infer&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
+## 
+##     prop_test, t_test</code></pre>
+<pre><code>## Loading required package: airports</code></pre>
+<pre><code>## Loading required package: cherryblossom</code></pre>
+<pre><code>## Loading required package: usdata</code></pre>
+<pre><code>## 
+## Attaching package: &#39;openintro&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     dotPlot</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lattice&#39;:
+## 
+##     ethanol, lsegments</code></pre>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
+## 
+##     rescale</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
 <div id="getting-the-data" class="section level1">
 <h1>Getting the Data</h1>
 <blockquote>
@@ -176,7 +249,7 @@ glimpse(df)</code></pre>
 
 yield_curve %&gt;%  
   #first we will mutate so that the 1-year treasury rate and the 10-year treasury rate will be shown next to each other in the final output, same    for 2,20 etc.
-  mutate(maturity = fct_relevel(maturity, c(&quot;1y&quot;,&quot;10y&quot;,&quot;2y&quot;,&quot;20y&quot;,&quot;3m&quot;,&quot;3y&quot;,&quot;30y&quot;,&quot;5y&quot;,&quot;5m&quot;,&quot;7y&quot;))) %&gt;%
+  mutate(maturity = fct_relevel(maturity, c(&quot;1y&quot;,&quot;10y&quot;,&quot;2y&quot;,&quot;20y&quot;,&quot;3m&quot;,&quot;3y&quot;,&quot;30y&quot;,&quot;5y&quot;,&quot;7y&quot;))) %&gt;%
   #here we plot date on the x-axis, price on the y-axis and we give the different treasury rates a different color
   ggplot(aes(x=date, y=price, color = factor(var_f)))+ 
   #we connect the observations to form a line
@@ -192,10 +265,6 @@ yield_curve %&gt;%
   theme_bw() + 
   # we remove the legend that comes automatically when making a graph with the code used above
   theme(legend.position = &quot;none&quot;)</code></pre>
-<pre><code>## Warning: Problem with `mutate()` input `maturity`.
-## ℹ Unknown levels in `f`: 5m
-## ℹ Input `maturity` is `fct_relevel(...)`.</code></pre>
-<pre><code>## Warning: Unknown levels in `f`: 5m</code></pre>
 <p><img src="/blogs/blog8_files/figure-html/yield_curve_1_done-1.png" width="100%" /></p>
 </div>
 <div id="monthly-yields-on-us-rates-by-duration-since-1999-on-a-year-by-year-basis" class="section level3">
@@ -246,10 +315,11 @@ yield_curve %&gt;%
   #we don&#39;t want a title above our legend
   theme(legend.title = element_blank())</code></pre>
 <p><img src="/blogs/blog8_files/figure-html/yield_curve_3_done-1.png" width="100%" /></p>
-<pre class="r"><code># get US recession dates after 1946 from Wikipedia 
-# https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States
-
-recessions &lt;- tibble(
+<blockquote>
+<p>Get US recession dates after 1946 from Wikipedia
+<a href="https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States" class="uri">https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States</a></p>
+</blockquote>
+<pre class="r"><code>recessions &lt;- tibble(
   from = c(&quot;1948-11-01&quot;, &quot;1953-07-01&quot;, &quot;1957-08-01&quot;, &quot;1960-04-01&quot;, &quot;1969-12-01&quot;, &quot;1973-11-01&quot;, &quot;1980-01-01&quot;,&quot;1981-07-01&quot;, &quot;1990-07-01&quot;, &quot;2001-03-01&quot;, &quot;2007-12-01&quot;),  
   to = c(&quot;1949-10-01&quot;, &quot;1954-05-01&quot;, &quot;1958-04-01&quot;, &quot;1961-02-01&quot;, &quot;1970-11-01&quot;, &quot;1975-03-01&quot;, &quot;1980-07-01&quot;, &quot;1982-11-01&quot;, &quot;1991-03-01&quot;, &quot;2001-11-01&quot;, &quot;2009-06-01&quot;) 
   )  %&gt;% 

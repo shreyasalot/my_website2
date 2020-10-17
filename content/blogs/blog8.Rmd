@@ -13,6 +13,8 @@ title: U.S. Yield Curves
 
 
 First, we will use the `tidyquant` package to download monthly rates for different durations. 
+
+
 ```{r load-libraries, echo=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
 library(mosaic)
@@ -28,25 +30,9 @@ library(infer)
 library(openintro)
 library(tidyquant)
 library(scales)
-library(lubridate)
-library(dplyr)
-library(ggplot2)
-library(purrr)
-library(tibble)
-library(tidyr)
-library(readr)
-library(forcats)
-library(stringr)
-library(PerformanceAnalytics)
-library(zoo)
-library(xts)
 ```
 
 
-```{r load-libraries, echo=FALSE}
-library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
-library(tidyquant)
-```
 # Getting the Data
 > Get a list of FRED codes for US rates and US yield curve; choose monthly frequency to see, eg., the 3-month T-bill https://fred.stlouisfed.org/series/TB3MS
 
@@ -110,7 +96,7 @@ yield_curve$var_f<-factor(yield_curve$var,levels=c("3-Month Treasury Bill","6-Mo
 
 yield_curve %>%  
   #first we will mutate so that the 1-year treasury rate and the 10-year treasury rate will be shown next to each other in the final output, same    for 2,20 etc.
-  mutate(maturity = fct_relevel(maturity, c("1y","10y","2y","20y","3m","3y","30y","5y","5m","7y"))) %>%
+  mutate(maturity = fct_relevel(maturity, c("1y","10y","2y","20y","3m","3y","30y","5y","7y"))) %>%
   #here we plot date on the x-axis, price on the y-axis and we give the different treasury rates a different color
   ggplot(aes(x=date, y=price, color = factor(var_f)))+ 
   #we connect the observations to form a line
@@ -181,9 +167,13 @@ yield_curve %>%
   theme(legend.title = element_blank())
 ```
 
+
+> Get US recession dates after 1946 from Wikipedia 
+> https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States 
+
+
 ```{r setup_US-recessions, warning=FALSE}
-# get US recession dates after 1946 from Wikipedia 
-# https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States
+
 
 recessions <- tibble(
   from = c("1948-11-01", "1953-07-01", "1957-08-01", "1960-04-01", "1969-12-01", "1973-11-01", "1980-01-01","1981-07-01", "1990-07-01", "2001-03-01", "2007-12-01"),  

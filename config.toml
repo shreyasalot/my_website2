@@ -116,10 +116,10 @@ disqusShortname = ""
       url = "blogs/blog8"
 
     [[params.tiles.showcase]]
-      title = "Consequat"
-      subtitle = "Ipsum Dolor Sit Amet"
-      image = "pic05.jpg"
-      url = "blogs/ipsum"
+      title = "GDP by Country"
+      subtitle = "Lets compare some countries"
+      image = "pic15.jpg"
+      url = "blogs/blog9"
 
     [[params.tiles.showcase]]
       title = "Etiam"
