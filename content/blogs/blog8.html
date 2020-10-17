@@ -22,52 +22,6 @@ title: U.S. Yield Curves
 <pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
-<pre><code>## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;mosaic&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggthemes&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     theme_map</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
-##   method from   
-##   +.gg   ggplot2</code></pre>
-<pre><code>## here() starts at /Users/shreyasalot/Documents/my_website2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;skimr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     n_missing</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
 <pre><code>## Loading required package: lubridate</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
@@ -101,36 +55,13 @@ title: U.S. Yield Curves
 <pre><code>## ══ Need to Learn tidyquant? ═════════════════════════════════════════════════════════════════════════════════
 ## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
 ## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
-<pre><code>## 
-## Attaching package: &#39;infer&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
-## 
-##     prop_test, t_test</code></pre>
-<pre><code>## Loading required package: airports</code></pre>
-<pre><code>## Loading required package: cherryblossom</code></pre>
-<pre><code>## Loading required package: usdata</code></pre>
-<pre><code>## 
-## Attaching package: &#39;openintro&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     dotPlot</code></pre>
-<pre><code>## The following objects are masked from &#39;package:lattice&#39;:
-## 
-##     ethanol, lsegments</code></pre>
-<pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     rescale</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor</code></pre>
-<p>#Getting the Data</p>
-<pre class="r"><code># Get a list of FRED codes for US rates and US yield curve; choose monthly frequency
-# to see, eg., the 3-month T-bill https://fred.stlouisfed.org/series/TB3MS
+<div id="getting-the-data" class="section level1">
+<h1>Getting the Data</h1>
+<blockquote>
+<p>Get a list of FRED codes for US rates and US yield curve; choose monthly frequency to see, eg., the 3-month T-bill <a href="https://fred.stlouisfed.org/series/TB3MS" class="uri">https://fred.stlouisfed.org/series/TB3MS</a></p>
+</blockquote>
+<pre class="r"><code>## Get a list of FRED codes for US rates and US yield curve; choose monthly frequency
+## to see, eg., the 3-month T-bill https://fred.stlouisfed.org/series/TB3MS
 tickers &lt;- c(&#39;TB3MS&#39;, # 3-month Treasury bill (or T-bill)
              &#39;TB6MS&#39;, # 6-month
              &#39;GS1&#39;,   # 1-year
@@ -389,5 +320,6 @@ yield_curve %&gt;%
   
   theme(plot.title = element_text(face=&quot;bold&quot;),plot.subtitle=element_text(face=&quot;italic&quot;,size=8)) #bold the main title and italic the subtitle</code></pre>
 <p><img src="/blogs/blog8_files/figure-html/yield_curve_4_done-1.png" width="100%" /></p>
+</div>
 </div>
 </div>

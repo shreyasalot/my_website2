@@ -13,7 +13,6 @@ title: U.S. Yield Curves
 
 
 First, we will use the `tidyquant` package to download monthly rates for different durations. 
-
 ```{r load-libraries, echo=FALSE}
 library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
 library(mosaic)
@@ -29,12 +28,32 @@ library(infer)
 library(openintro)
 library(tidyquant)
 library(scales)
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(purrr)
+library(tibble)
+library(tidyr)
+library(readr)
+library(forcats)
+library(stringr)
+library(PerformanceAnalytics)
+library(zoo)
+library(xts)
 ```
-#Getting the Data
+
+
+```{r load-libraries, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(tidyquant)
+```
+# Getting the Data
+> Get a list of FRED codes for US rates and US yield curve; choose monthly frequency to see, eg., the 3-month T-bill https://fred.stlouisfed.org/series/TB3MS
+
 
 ```{r get_rates, warning=FALSE}
-# Get a list of FRED codes for US rates and US yield curve; choose monthly frequency
-# to see, eg., the 3-month T-bill https://fred.stlouisfed.org/series/TB3MS
+## Get a list of FRED codes for US rates and US yield curve; choose monthly frequency
+## to see, eg., the 3-month T-bill https://fred.stlouisfed.org/series/TB3MS
 tickers <- c('TB3MS', # 3-month Treasury bill (or T-bill)
              'TB6MS', # 6-month
              'GS1',   # 1-year
