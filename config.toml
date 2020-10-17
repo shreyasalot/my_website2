@@ -110,10 +110,10 @@ disqusShortname = ""
       url = "blogs/blog7"
 
     [[params.tiles.showcase]]
-      title = "Ipsum"
-      subtitle = "Nisl Sed Aliquam"
+      title = "U.S. Yield Curve"
+      subtitle = "Treasury Rates and Yield Curves"
       image = "pic04.jpg"
-      url = "blogs/ipsum"
+      url = "blogs/blog8"
 
     [[params.tiles.showcase]]
       title = "Consequat"

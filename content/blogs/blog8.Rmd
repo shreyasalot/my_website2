@@ -1,0 +1,229 @@
+---
+categories:
+- ""
+- ""
+date: "2020/10/15"
+description: ""
+draft: false
+image: pic14.jpg
+keywords: ""
+slug: blog8
+title: U.S. Yield Curves
+---
+
+
+First, we will use the `tidyquant` package to download monthly rates for different durations. 
+
+```{r load-libraries, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(GGally)
+library(readxl)
+library(here)
+library(skimr)
+library(janitor)
+library(broom)
+library(tidyquant)
+library(infer)
+library(openintro)
+library(tidyquant)
+library(scales)
+```
+#Getting the Data
+
+```{r get_rates, warning=FALSE}
+# Get a list of FRED codes for US rates and US yield curve; choose monthly frequency
+# to see, eg., the 3-month T-bill https://fred.stlouisfed.org/series/TB3MS
+tickers <- c('TB3MS', # 3-month Treasury bill (or T-bill)
+             'TB6MS', # 6-month
+             'GS1',   # 1-year
+             'GS2',   # 2-year, etc....
+             'GS3',
+             'GS5',
+             'GS7',
+             'GS10',
+             'GS20',
+             'GS30')  #.... all the way to the 30-year rate
+
+# Turn  FRED codes to human readable variables
+myvars <- c('3-Month Treasury Bill',
+            '6-Month Treasury Bill',
+            '1-Year Treasury Rate',
+            '2-Year Treasury Rate',
+            '3-Year Treasury Rate',
+            '5-Year Treasury Rate',
+            '7-Year Treasury Rate',
+            '10-Year Treasury Rate',
+            '20-Year Treasury Rate',
+            '30-Year Treasury Rate')
+
+maturity <- c('3m', '6m', '1y', '2y','3y','5y','7y','10y','20y','30y')
+
+# by default R will sort these maturities alphabetically; but since we want
+# to keep them in that exact order, we recast maturity as a factor 
+# or categorical variable, with the levels defined as we want
+maturity <- factor(maturity, levels = maturity)
+
+# Create a lookup dataset
+mylookup<-data.frame(symbol=tickers,var=myvars, maturity=maturity)
+# Take a look:
+mylookup %>% 
+  knitr::kable()
+
+df <- tickers %>% tidyquant::tq_get(get="economic.data", 
+                   from="1960-01-01")   # start from January 1960
+
+glimpse(df)
+```
+
+```{r join_data, warning=FALSE}
+yield_curve <-left_join(df,mylookup,by="symbol")  #join this dataframe `df` with the dataframe `mylookup`
+```
+
+## Plotting the yield curve
+
+### Yields on US rates by duration since 1960
+
+```{r yield_curve_1_done,  out.width="100%"}
+
+yield_curve$var_f<-factor(yield_curve$var,levels=c("3-Month Treasury Bill","6-Month Treasury Bill","1-Year Treasury Rate","2-Year Treasury Rate","3-Year Treasury Rate","5-Year Treasury Rate","7-Year Treasury Rate","10-Year Treasury Rate","20-Year Treasury Rate","30-Year Treasury Rate"))
+
+yield_curve %>%  
+  #first we will mutate so that the 1-year treasury rate and the 10-year treasury rate will be shown next to each other in the final output, same    for 2,20 etc.
+  mutate(maturity = fct_relevel(maturity, c("1y","10y","2y","20y","3m","3y","30y","5y","5m","7y"))) %>%
+  #here we plot date on the x-axis, price on the y-axis and we give the different treasury rates a different color
+  ggplot(aes(x=date, y=price, color = factor(var_f)))+ 
+  #we connect the observations to form a line
+  geom_line() + 
+  # we use facet wrap to get 10 different graphs instead of one, 10 because there are 10 different values for var in our data (10 different          treasury rate periods)
+  facet_wrap(.~factor(var_f), nrow = 5) +
+  # we use labs to give our output a title and to mention a source
+  labs(x="", 
+       y="%", 
+       title="Yields on U.S. Treasury rates since 1960", 
+       caption="Source: St Louis Federal Reserve Econoomic Database (FRED)") + 
+  #Finally we add a theme
+  theme_bw() + 
+  # we remove the legend that comes automatically when making a graph with the code used above
+  theme(legend.position = "none")
+```
+
+
+### Monthly yields on US rates by duration since 1999 on a year-by-year basis
+
+```{r yield_curve_2_done,  out.width="100%"}
+yield_curve %>% 
+  #We use mutate to make 2 columns: one with the year of the bond and one with the month that in which the bond was issued
+  mutate(facet_year = year(ymd(date)), facet_month = month(ymd(date))) %>%
+  #We only want to look at the years that bonds were issued after 1999
+  filter(facet_year >= 1999) %>%
+  #We group by facet_month as we want to draw a line between all the different periods of treasury bonds (so we want to draw a line between a 3m treasury bond issued in month 1, 6m treasury bond issued in month 1 etc. and then also for all the other bonds that were issued in a specific month )
+  ggplot(aes(x=maturity, y=price, color = factor(facet_year),group = factor(facet_month))) +
+  #we connect the observations to form a line
+  geom_line() +
+   # we use facet wrap to get a different graph for every year and nrow=6 because we want the final output to be shown on 6 rows
+  facet_wrap(~facet_year, nrow = 6) +
+  # we use labs to give our output a title and to mention a source
+  labs(x="Maturity", 
+       y="Yield(%)", 
+       title="US Yield Curve", 
+       caption="Source: St Louis Federal Reserve Econoomic Database (FRED)") +
+  #we add a theme for the graphs
+  theme_bw() + 
+   # we remove the legend that comes automatically when making a graph with the code used above
+  theme(legend.position = "none")
+```
+
+
+### 3-month and 10-year yields since 1999
+``
+
+```{r yield_curve_3_done,  out.width="100%"}
+yield_curve %>% 
+  # we only want bonds with a maturity of 3m and 10y
+  filter(maturity == "3m" |  maturity=="10y") %>%
+  # we make a new column that shows the year that the bonds were issued
+  mutate(year = year(ymd(date))) %>%
+  # now we can filter for years after 1999
+  filter(year >= 1999) %>%
+  # we group by color as we want to clearly indicate which line belongs to which treasury rate 
+  ggplot(aes(x=date, y=price, color = var_f)) +
+  #we connect the observations to form a line
+  geom_line() +
+  # we use labs to give our output a title and to mention a source
+  labs(x="", 
+       y="%", 
+       title="Yields on 3-month and 10-year US Treasury rates since 1999", 
+       caption="Source: St Louis Federal Reserve Econoomic Database (FRED)") + 
+  #we add a theme for the graphs
+  theme_bw()+ 
+  #we don't want a title above our legend
+  theme(legend.title = element_blank())
+```
+
+```{r setup_US-recessions, warning=FALSE}
+# get US recession dates after 1946 from Wikipedia 
+# https://en.wikipedia.org/wiki/List_of_recessions_in_the_United_States
+
+recessions <- tibble(
+  from = c("1948-11-01", "1953-07-01", "1957-08-01", "1960-04-01", "1969-12-01", "1973-11-01", "1980-01-01","1981-07-01", "1990-07-01", "2001-03-01", "2007-12-01"),  
+  to = c("1949-10-01", "1954-05-01", "1958-04-01", "1961-02-01", "1970-11-01", "1975-03-01", "1980-07-01", "1982-11-01", "1991-03-01", "2001-11-01", "2009-06-01") 
+  )  %>% 
+  mutate(From = ymd(from), 
+         To=ymd(to),
+         duration_days = To-From)
+
+recessions
+```
+`
+
+
+```{r yield_curve_4_done,  out.width="100%"}
+recessions <- recessions %>% 
+  
+  filter(To >= as.Date("1960-01-01")) #filter date later than 1960-01-01
+
+yield_curve %>% 
+  # we only want bonds with a maturity of 3m and 10y
+  filter(maturity == "3m" |  maturity=="10y") %>%
+  # we arranged the data so we could use the following "lead" function, which allows us to calculate the delta. We need the delta is this is the     difference in the price between 3m and 10y treasury bonds, so the delta is the line that we need to plot
+  arrange(date) %>%
+  mutate(delta = lead(price) - price ) %>% 
+  #here we could filter on 3m or 10y(then you should multiply by (-1)). If we don't do this, we will get all our deltas double
+  filter(maturity == "3m") %>%
+  #plot a graph with date on the x-axis and delta on the y-axis
+  ggplot(aes(x=date, y=delta)) +
+  #we connect the observations to form a line
+  geom_line() +
+  #we add the line wherer y is equal to 0
+  geom_hline(yintercept=0) +
+  # we use labs to give our output a title and to mention a source
+  labs(x="", 
+       y="Difference (10-year - 3-month) tield in %", 
+       title="Yield Curve Inversion: 10-year minus 3-month U.S. Treasury rates", 
+       subtitle="Difference in % points, monthly averages. Shaded areas correspond to recessions",
+       caption="Source: FRED, Federal Reserve Banks of St Louis ") + 
+  # we add a theme
+  theme_bw()+ 
+  # we remove the legend title
+  theme(legend.title = element_blank()) + 
+  #we fill the surface above y=0 with the color blue and the line under y=0 with the color red
+  geom_ribbon(aes(x = date , ymin = 0, ymax = if_else(delta<0, delta, 0)  , alpha=0.5, fill = "A")) + 
+  
+  geom_ribbon(aes(x =  date, ymin = 0, ymax = if_else(delta>0, delta, 0),alpha=0.5, fill = "B")) +
+  
+  scale_fill_manual(values=c("#CD8382","#08519D"), name="") +
+  #we add the grey shaded areas corresponding to recessions
+  geom_rect(data=recessions, inherit.aes=F, aes(xmin=From, xmax=To, ymin=-Inf, ymax=+Inf), fill='grey', alpha=0.5) +
+  #we remove the legend
+  theme(legend.position = "none")+
+  # we rescale the x-axis so that it shows the date in 2 year periods as in the example. This can easily be changed by changing the number in the    code below 
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y")  +
+  
+  geom_rug(aes(colour=ifelse(delta>=0,">=0","<0")),sides="b",alpha=0.5) +
+  
+  scale_colour_manual(values=c("#CD8383","#08519C"), guide=FALSE)+
+  
+  theme(plot.title = element_text(face="bold"),plot.subtitle=element_text(face="italic",size=8)) #bold the main title and italic the subtitle
+``` 
