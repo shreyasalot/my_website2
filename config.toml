@@ -215,7 +215,4 @@ disqusShortname = ""
       url= "https://www.linkedin.com/in/shreya-salot-931298109/"
       label = "LinkedIn"
 
-    #[[params.footer.quicklinks]]
-     # text = "Design: "
-     # url= "https://www.html5up.net"
-      #alt = "HTML5 UP"
+    
