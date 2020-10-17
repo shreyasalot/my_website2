@@ -172,11 +172,11 @@ disqusShortname = ""
     # by copying the corresponding map with frontmatter code.
     [[params.contact.email]]
     title = "Email"
-    email = "salotshreya96@gmail.com"
+    email = "ssalot.mfa2021@london.edu"
 
     [[params.contact.phone]]
     title = "Phone"
-    phone = "(000) 000-0000 x1234"
+    phone = "(000) 7587-2**-***"
 
     [[params.contact.address]]
     title = "Address"
@@ -187,7 +187,7 @@ disqusShortname = ""
   # Footer section
   [params.footer]
     enable = true
-    copyright = "Company Name"
+    copyright = "Shreya Inc"
 
     # Uses font awesome icons
     [[params.footer.social]]
