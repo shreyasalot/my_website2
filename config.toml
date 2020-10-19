@@ -48,8 +48,8 @@ disqusShortname = ""
       url = "#"
 
     [[params.navigation.links]]
-      name = "Blogs"
-      url = "blogs"
+      name = "About me"
+      url = "blogs/blog5"
 
     [[params.navigation.links]]
       name = "Generic Blog"
@@ -83,7 +83,7 @@ disqusShortname = ""
     # the 'static/img' folder.
     title = "Hi, my name is Shreya"
     subtitle = "This is my portfolio website."
-    buttonText = "Get Started"
+    buttonText = "Let's take a look!"
 
 
   # Tiles Section
@@ -124,7 +124,7 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "Life Expectancy"
       subtitle = "Lets focus on Asia"
-      image = "pic06.jpg"
+      image = "pic012.jpg"
       url = "blogs/blog10"
     # You can make more showcases by copy and pasting the code above
 
