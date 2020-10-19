@@ -15,120 +15,6 @@ title: GDP by Country
 
 <div id="gdp-components-over-time-and-among-countries" class="section level1">
 <h1>GDP components over time and among countries</h1>
-<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
-<pre><code>## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.</code></pre>
-<pre><code>## 
-## Attaching package: &#39;mosaic&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     cross</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggthemes&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     theme_map</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;GGally&#39;:
-##   method from   
-##   +.gg   ggplot2</code></pre>
-<pre><code>## here() starts at /Users/shreyasalot/Documents/my_website2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;skimr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     n_missing</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
-<pre><code>## Loading required package: lubridate</code></pre>
-<pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<pre><code>## Loading required package: PerformanceAnalytics</code></pre>
-<pre><code>## Loading required package: xts</code></pre>
-<pre><code>## Loading required package: zoo</code></pre>
-<pre><code>## 
-## Attaching package: &#39;zoo&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     as.Date, as.Date.numeric</code></pre>
-<pre><code>## 
-## Attaching package: &#39;xts&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     first, last</code></pre>
-<pre><code>## 
-## Attaching package: &#39;PerformanceAnalytics&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     legend</code></pre>
-<pre><code>## Loading required package: quantmod</code></pre>
-<pre><code>## Loading required package: TTR</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
-##   method            from
-##   as.zoo.data.frame zoo</code></pre>
-<pre><code>## Version 0.4-0 included new data defaults. See ?getSymbols.</code></pre>
-<pre><code>## ══ Need to Learn tidyquant? ═════════════════════════════════════════════════════════════════════════════════
-## Business Science offers a 1-hour course - Learning Lab #9: Performance Analysis &amp; Portfolio Optimization with tidyquant!
-## &lt;/&gt; Learn more at: https://university.business-science.io/p/learning-labs-pro &lt;/&gt;</code></pre>
-<pre><code>## 
-## Attaching package: &#39;infer&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:mosaic&#39;:
-## 
-##     prop_test, t_test</code></pre>
-<pre><code>## Loading required package: airports</code></pre>
-<pre><code>## Loading required package: cherryblossom</code></pre>
-<pre><code>## Loading required package: usdata</code></pre>
-<pre><code>## 
-## Attaching package: &#39;openintro&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     dotPlot</code></pre>
-<pre><code>## The following objects are masked from &#39;package:lattice&#39;:
-## 
-##     ethanol, lsegments</code></pre>
-<pre><code>## 
-## Attaching package: &#39;scales&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:mosaic&#39;:
-## 
-##     rescale</code></pre>
-<pre><code>## The following object is masked from &#39;package:purrr&#39;:
-## 
-##     discard</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     col_factor</code></pre>
 <blockquote>
 <p>Getting the data</p>
 </blockquote>
@@ -146,9 +32,9 @@ tidy_GDP_data  &lt;-  UN_GDP_data %&gt;%
   gather(&#39;1970&#39;, &#39;1971&#39;, &#39;1972&#39;, &#39;1973&#39;, &#39;1974&#39;, &#39;1975&#39;, &#39;1976&#39;, &#39;1977&#39;, &#39;1978&#39;, &#39;1979&#39;, &#39;1980&#39;, &#39;1981&#39;, &#39;1982&#39;, &#39;1983&#39;, &#39;1984&#39;, &#39;1985&#39;, &#39;1986&#39;, &#39;1987&#39;, &#39;1988&#39;, &#39;1989&#39;, &#39;1990&#39;, &#39;1991&#39;, &#39;1992&#39;, &#39;1993&#39;, &#39;1994&#39;, &#39;1995&#39;, &#39;1996&#39;, &#39;1997&#39;, &#39;1998&#39;, &#39;1999&#39;, &#39;2000&#39;, &#39;2001&#39;, &#39;2002&#39;, &#39;2003&#39;, &#39;2004&#39;, &#39;2005&#39;, &#39;2006&#39;, &#39;2007&#39;, &#39;2008&#39;, &#39;2009&#39;, &#39;2010&#39;, &#39;2011&#39;, &#39;2012&#39;, &#39;2013&#39;, &#39;2014&#39;, &#39;2015&#39;, &#39;2016&#39;, key = Year, value = GDP)
 
 #changing GDP to billions
-tidy_GDP_data$GDP = as.numeric(formatC(tidy_GDP_data$GDP / (10^9), digits = 4, format = &quot;f&quot;))</code></pre>
-<pre><code>## Warning: NAs introduced by coercion</code></pre>
-<pre class="r"><code>#renaming some indicators 
+tidy_GDP_data$GDP = as.numeric(formatC(tidy_GDP_data$GDP / (10^9), digits = 4, format = &quot;f&quot;))
+
+#renaming some indicators 
 tidy_GDP_data$IndicatorName[tidy_GDP_data$IndicatorName == &quot;Household consumption expenditure (including Non-profit institutions serving households)&quot;] &lt;- &quot;Household expenditure&quot;
 
 tidy_GDP_data$IndicatorName[tidy_GDP_data$IndicatorName == &quot;Exports of goods and services&quot;] &lt;- &quot;Exports&quot;
@@ -164,7 +50,7 @@ glimpse(tidy_GDP_data)</code></pre>
 ## $ Country       &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanist…
 ## $ IndicatorName &lt;chr&gt; &quot;Final consumption expenditure&quot;, &quot;Household expenditure…
 ## $ Year          &lt;chr&gt; &quot;1970&quot;, &quot;1970&quot;, &quot;1970&quot;, &quot;1970&quot;, &quot;1970&quot;, &quot;1970&quot;, &quot;1970&quot;,…
-## $ GDP           &lt;dbl&gt; 5.5591, 5.0651, 0.3725, 0.9846, 0.9846, 0.1124, 0.1841,…</code></pre>
+## $ GDP           &lt;dbl&gt; 5.559, 5.065, 0.372, 0.985, 0.985, 0.112, 0.184, 10.721…</code></pre>
 <pre class="r"><code># Let us compare GDP components for these 3 countries
 country_list &lt;- c(&quot;United States&quot;,&quot;India&quot;, &quot;Germany&quot;)</code></pre>
 <blockquote>
@@ -193,7 +79,7 @@ ggplot(gdp_country_list, aes(x = Year, y = GDP, group = IndicatorName, color = I
   theme_bw() + # desired theme
   
   theme(plot.title = element_text(face=&quot;bold&quot;)) #bold the main title</code></pre>
-<p><img src="/blogs/blog9_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/blogs/blog9_files/figure-html/unnamed-chunk-1-1.png" width="648" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>GDP is the sum of Household Expenditure (Consumption <em>C</em>), Gross Capital Formation (business investment <em>I</em>), Government Expenditure (G) and Net Exports (exports - imports).</p>
 </blockquote>
@@ -274,7 +160,7 @@ ggplot(GDP_data_long, aes(x = Year, y = GDP_contribution, color = Category, grou
   theme_bw()+ # desired theme
   theme(legend.key = element_rect(fill = NA,color = NA)) + #change the legend key color
   theme(plot.title = element_text(face=&quot;bold&quot;)) #bold the main title</code></pre>
-<p><img src="/blogs/blog9_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/blogs/blog9_files/figure-html/unnamed-chunk-3-1.png" width="648" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>The 3 charts show us how the different indicators of GDP have changed over time from 1970 to 2016 in Germany, India and the United States. Household expenditure has remained stable in Germany at around 60%. It used to be high in India but has declined from the 1980s. It has increased slightly in the U.S. from 62% to around 70%. Germany’s exports have increased slightly from the 2000s while exports in India and the U.S. have fluctuated slightly over the years. Germany and India have had stable government expenditure while it has decreased in the U.S. The Gross capital formation has risen drastically in India from the early 2000s while it hasn’t fluctuated much in Germany and the U.S.</p>
 </blockquote>
