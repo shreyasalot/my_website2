@@ -5,10 +5,10 @@ categories:
 date: "2020/10/15"
 description: ""
 draft: false
-image: pic11.jpg
+image: pic16.jpg
 keywords: ""
 slug: blog10
-title: LifeExpectancy
+title: Life Expectancy in India (Asia)
 ---
 
 
@@ -77,10 +77,9 @@ print(plot1)</code></pre>
 <pre class="r"><code>ggplot(data = continent_data , mapping = aes(x = year  , y = lifeExp , colour= country))+
  geom_point() + 
  geom_smooth(se = FALSE) +
- labs( title= &quot;Life Expectancy over time&quot;, subtitle= &quot;Asia&quot;, x=&quot;Year&quot;, y= &quot;LifeExp&quot;)</code></pre>
+ labs( title= &quot;Life Expectancy over time&quot;, subtitle= &quot;Asia&quot;, x=&quot;Year&quot;, y= &quot;LifeExp&quot;) +
+  NULL</code></pre>
 <p><img src="/blogs/blog10_files/figure-html/lifeExp_one_continent-1.png" width="648" style="display: block; margin: auto;" /></p>
-<pre class="r"><code> NULL</code></pre>
-<pre><code>## NULL</code></pre>
 <blockquote>
 <p>In the early 1950s, the life expectancy in Africa was lower than all the other continents. This could be because of lack of good healthcare services, infections and poverty. Over time, most countries have higher life expectancy since 1952 due to development and a fall in child mortality rates. Oceania has had a stable and high life expectancy over the years.</p>
 </blockquote>

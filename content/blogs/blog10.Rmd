@@ -5,10 +5,10 @@ categories:
 date: "2020/10/15"
 description: ""
 draft: false
-image: pic11.jpg
+image: pic16.jpg
 keywords: ""
 slug: blog10
-title: LifeExpectancy
+title: Life Expectancy in India (Asia)
 ---
 
 
@@ -79,8 +79,8 @@ print(plot1)
 ggplot(data = continent_data , mapping = aes(x = year  , y = lifeExp , colour= country))+
  geom_point() + 
  geom_smooth(se = FALSE) +
- labs( title= "Life Expectancy over time", subtitle= "Asia", x="Year", y= "LifeExp")
- NULL
+ labs( title= "Life Expectancy over time", subtitle= "Asia", x="Year", y= "LifeExp") +
+  NULL
 ```
 
 
