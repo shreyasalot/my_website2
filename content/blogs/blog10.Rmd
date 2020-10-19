@@ -1,0 +1,87 @@
+---
+categories:
+- ""
+- ""
+date: "2020/10/15"
+description: ""
+draft: false
+image: pic11.jpg
+keywords: ""
+slug: blog10
+title: LifeExpectancy
+---
+
+
+```{r, setup, echo=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+options(digits = 3)
+# default figure size
+knitr::opts_chunk$set(
+  fig.width=6.75, 
+  fig.height=6.75,
+  fig.align = "center"
+)
+```
+
+
+
+```{r load-libraries, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(gapminder)  # gapminder dataset
+library(here)
+```
+
+
+>Loading data
+
+```{r}
+glimpse(gapminder)
+
+head(gapminder, 20) # look at the first 20 rows of the dataframe
+
+```
+
+> Filtering the data for my country (India) and continent (Asia)
+
+```{r}
+country_data <- gapminder  %>%
+            filter(country == "India") 
+
+continent_data <- gapminder %>%
+            filter (continent =="Asia")
+
+```
+
+>Plotting Life expectancy data for India
+
+```{r}
+plot1 <- ggplot(data = country_data, mapping = aes(x = year, y = lifeExp))+
+ geom_point() +
+ geom_smooth(se = FALSE) +
+ labs(title = "India Life Expectancy Over Time",
+       x = " year",
+       y = " Life Expectancy") +
+   NULL
+
+
+print(plot1)
+
+```
+
+
+>Producing a plot for all countries in Asia
+
+```{r lifeExp_one_continent}
+ggplot(data = continent_data , mapping = aes(x = year  , y = lifeExp , colour= country))+
+ geom_point() + 
+ geom_smooth(se = FALSE) +
+ labs( title= "Life Expectancy over time", subtitle= "Asia", x="Year", y= "LifeExp")
+ NULL
+```
+
+
+>In the early 1950s, the life expectancy in Africa was lower than all the other continents. This could be because of lack of good healthcare services, infections and poverty. Over time, most countries have higher life expectancy since 1952 due to development and a fall in child mortality rates. Oceania has had a stable and high life expectancy over the years.

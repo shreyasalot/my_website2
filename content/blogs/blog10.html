@@ -1,0 +1,86 @@
+---
+categories:
+- ""
+- ""
+date: "2020/10/15"
+description: ""
+draft: false
+image: pic11.jpg
+keywords: ""
+slug: blog10
+title: LifeExpectancy
+---
+
+
+
+<blockquote>
+<p>Loading data</p>
+</blockquote>
+<pre class="r"><code>glimpse(gapminder)</code></pre>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghani…
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia,…
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997,…
+## $ lifeExp   &lt;dbl&gt; 28.8, 30.3, 32.0, 34.0, 36.1, 38.4, 39.9, 40.8, 41.7, 41.8,…
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 1…
+## $ gdpPercap &lt;dbl&gt; 779, 821, 853, 836, 740, 786, 978, 852, 649, 635, 727, 975,…</code></pre>
+<pre class="r"><code>head(gapminder, 20) # look at the first 20 rows of the dataframe</code></pre>
+<pre><code>## # A tibble: 20 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## 11 Afghanistan Asia       2002    42.1 25268405      727.
+## 12 Afghanistan Asia       2007    43.8 31889923      975.
+## 13 Albania     Europe     1952    55.2  1282697     1601.
+## 14 Albania     Europe     1957    59.3  1476505     1942.
+## 15 Albania     Europe     1962    64.8  1728137     2313.
+## 16 Albania     Europe     1967    66.2  1984060     2760.
+## 17 Albania     Europe     1972    67.7  2263554     3313.
+## 18 Albania     Europe     1977    68.9  2509048     3533.
+## 19 Albania     Europe     1982    70.4  2780097     3631.
+## 20 Albania     Europe     1987    72    3075321     3739.</code></pre>
+<blockquote>
+<p>Filtering the data for my country (India) and continent (Asia)</p>
+</blockquote>
+<pre class="r"><code>country_data &lt;- gapminder  %&gt;%
+            filter(country == &quot;India&quot;) 
+
+continent_data &lt;- gapminder %&gt;%
+            filter (continent ==&quot;Asia&quot;)</code></pre>
+<blockquote>
+<p>Plotting Life expectancy data for India</p>
+</blockquote>
+<pre class="r"><code>plot1 &lt;- ggplot(data = country_data, mapping = aes(x = year, y = lifeExp))+
+ geom_point() +
+ geom_smooth(se = FALSE) +
+ labs(title = &quot;India Life Expectancy Over Time&quot;,
+       x = &quot; year&quot;,
+       y = &quot; Life Expectancy&quot;) +
+   NULL
+
+
+print(plot1)</code></pre>
+<p><img src="/blogs/blog10_files/figure-html/unnamed-chunk-3-1.png" width="648" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>Producing a plot for all countries in Asia</p>
+</blockquote>
+<pre class="r"><code>ggplot(data = continent_data , mapping = aes(x = year  , y = lifeExp , colour= country))+
+ geom_point() + 
+ geom_smooth(se = FALSE) +
+ labs( title= &quot;Life Expectancy over time&quot;, subtitle= &quot;Asia&quot;, x=&quot;Year&quot;, y= &quot;LifeExp&quot;)</code></pre>
+<p><img src="/blogs/blog10_files/figure-html/lifeExp_one_continent-1.png" width="648" style="display: block; margin: auto;" /></p>
+<pre class="r"><code> NULL</code></pre>
+<pre><code>## NULL</code></pre>
+<blockquote>
+<p>In the early 1950s, the life expectancy in Africa was lower than all the other continents. This could be because of lack of good healthcare services, infections and poverty. Over time, most countries have higher life expectancy since 1952 due to development and a fall in child mortality rates. Oceania has had a stable and high life expectancy over the years.</p>
+</blockquote>
